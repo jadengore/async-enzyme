@@ -10,7 +10,7 @@ Promise resolution queues.
 Assume you had the component below. The user is shown two items to click.
 On click, some async operations are done (e.g. fetching from the server), and
 finally the user is shown which value was chosen.
-```
+```tsx
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export class TestComponent extends React.Component{
@@ -44,7 +44,7 @@ export class TestComponent extends React.Component{
 ```
 
 The following test would fail:
-```
+```tsx
 test('Should display correct value', () => {
     const selector = '[data-test-id="text"]';
     component = mount(<TestComponent />);
@@ -58,7 +58,7 @@ test('Should display correct value', () => {
 To make the test pass we need to wait for the Promise queue to resolve.
 `waitFor()` resolves this issue.
 
-```
+```tsx
 test('Should display correct value', async (done) => {
     const selector = '[data-test-id="text"]';
     component = mount(<TestComponent />);
@@ -75,7 +75,7 @@ You might also want to use `waitNotToThrow()`.
 The function takes a callback and resolves when a passed callback stops throwing errors.
 The test above could have also been written the following way:
 
-```
+```tsx
 test('Should display correct value', async (done) => {
     const selector = '[data-test-id="text"]';
     component = mount(<TestComponent />);
